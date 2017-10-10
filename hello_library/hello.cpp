@@ -1,5 +1,5 @@
 #include "hello.h"
 
-int hello() {
-    return 42;
+int add(int a, int b) {
+    return a + b;
 }

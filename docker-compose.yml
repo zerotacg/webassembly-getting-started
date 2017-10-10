@@ -1,14 +1,9 @@
 version: "2"
 services:
 
-  ubuntu:
-    image: ubuntu:16.04
+  emcc:
+    build: .
+    image: webassembly/emcc
     volumes:
       - ".:/webassembly/code"
-    working_dir: "/webassembly/code"
-
-  base:
-    extends:
-      service: ubuntu
-    build: .
-    image: webassembly/base
+    command: ["/usr/bin/env", "bash"]
