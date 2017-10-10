@@ -1,8 +1,10 @@
 BUILD_PATH = build
+DOCKER = docker
+DOCKER_RUN_FLAGS = --rm
 DOCKER_COMPOSE = docker-compose
-STAMP = touch
+STAMP = $(STAMP) touch
 
-.PHONY: clean container
+.PHONY: clean configure container
 
 clean:
 	rm -rf $(BUILD_PATH)

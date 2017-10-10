@@ -1,5 +1,14 @@
 version: "2"
 services:
+
+  ubuntu:
+    image: ubuntu:16.04
+    volumes:
+      - ".:/webassembly/code"
+    working_dir: "/webassembly/code"
+
   base:
+    extends:
+      service: ubuntu
     build: .
     image: webassembly/base
