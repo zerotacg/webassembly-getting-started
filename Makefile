@@ -9,6 +9,9 @@ clean:
 
 container: $(BUILD_PATH)/container.stamp
 
-$(BUILD_PATH)/container.stamp: Dockerfile docker-compose.yml
+$(BUILD_PATH)/container.stamp: $(BUILD_PATH) Dockerfile docker-compose.yml
 	$(DOCKER_COMPOSE) build
 	$(STAMP) $@
+
+$(BUILD_PATH):
+	mkdir --parents $(BUILD_PATH)
