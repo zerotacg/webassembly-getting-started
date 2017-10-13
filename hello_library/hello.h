@@ -16,6 +16,7 @@ extern "C" {
 
 EXPORT int add(int a, int b);
 
-}
+EXPORT int add2(int a, int b);
 
+}
 #endif //GETTING_STARTED_HELLO_H
