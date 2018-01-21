@@ -21,7 +21,7 @@ $(BUILD_PATH)/container.stamp: $(BUILD_PATH) Dockerfile docker-compose.yml
 	$(STAMP) $@
 
 all: container
-	$(DOCKER_COMPOSE) run emcc bash -c "cmake -H. -Bbuild && cmake --build build"
+	$(DOCKER_COMPOSE) run emcc bash -c "cmake -DCMAKE_BUILD_TYPE=Debug -H. -Bbuild && cmake --build build"
 
 wat: $(BUILD_PATH)/hello_library/libhello.wat $(BUILD_PATH)/hello_world/getting_started.wat
 
