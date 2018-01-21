@@ -15,14 +15,15 @@ RUN git clone https://github.com/juj/emsdk.git /webassembly/emsdk \
 RUN git clone --recursive https://github.com/WebAssembly/wabt /webassembly/wabt \
  && (cd /webassembly/wabt && make && make install)
 
-ENV PATH=${PATH}:/webassembly/emsdk \
-    PATH=${PATH}:/webassembly/emsdk/clang/e1.37.21_64bit \
-    PATH=${PATH}:/webassembly/emsdk/node/4.1.1_64bit/bin \
-    PATH=${PATH}:/webassembly/emsdk/emscripten/1.37.21 \
+ENV EMSCRIPTEN_VERSION=1.37.28 \
+    CLANG_VERSION=e1.37.28_64bit \
+    NODE_VERSION=8.9.1_64bit
+
+ENV PATH=${PATH}:/webassembly/emsdk:/webassembly/emsdk/clang/${CLANG_VERSION}:/webassembly/emsdk/node/${NODE_VERSION}/bin:/webassembly/emsdk/emscripten/${EMSCRIPTEN_VERSION} \
     EMSDK=/webassembly/emsdk \
     EM_CONFIG=/root/.emscripten \
-    BINARYEN_ROOT=/webassembly/emsdk/clang/e1.37.21_64bit/binaryen \
-    EMSCRIPTEN=/webassembly/emsdk/emscripten/1.37.21 \
+    BINARYEN_ROOT=/webassembly/emsdk/clang/${CLANG_VERSION}/binaryen \
+    EMSCRIPTEN=/webassembly/emsdk/emscripten/${EMSCRIPTEN_VERSION} \
     CC=emcc \
     CXX=em++ \
     CFLAGS="${CFLAGS} -s WASM=1" \
