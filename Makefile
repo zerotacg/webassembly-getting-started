@@ -16,11 +16,11 @@ clean:
 container: $(BUILD_PATH)/container.stamp
 
 $(BUILD_PATH)/container.stamp: $(BUILD_PATH) Dockerfile docker-compose.yml
-	$(DOCKER_COMPOSE) build
+	$(DOCKER_COMPOSE) build --force-rm
 	$(STAMP) $@
 
 all: container
-	$(DOCKER_COMPOSE) run emcc bash -c "cmake -DCMAKE_BUILD_TYPE=Debug -H. -Bbuild && cmake --build build"
+	$(DOCKER_COMPOSE) run emcc bash -c "cmake -H. -Bbuild && cmake --build build"
 
 $(BUILD_PATH):
 	mkdir --parents $(BUILD_PATH)
